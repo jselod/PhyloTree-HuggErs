@@ -18,3 +18,5 @@ anole2 <- anole%>%
 #1
 anole.log <- anole2%>%
   mutate_at(c("SVL", "HTotal","PH","ArbPD"),log)
+
+#2
