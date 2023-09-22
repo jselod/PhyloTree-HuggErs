@@ -21,9 +21,10 @@ anole.log <- anole2%>%
 anole.log
 
 #2
-anole.lm1 <- lm(HTotal~ArbPD+Species,data=anole.log)
-anole.lm2 <- lm(HTotal~PH+Species,data=anole.log)
+anole.lm1 <- lm(HTotal~SVL+ArbPD,data=anole.log)
+anole.lm2 <- lm(HTotal~SVL+PH,data=anole.log)
 
 #3
 anole.resid.1 <- resid(anole.lm1)
 anole.resid.2 <- resid(anole.lm2)
+
