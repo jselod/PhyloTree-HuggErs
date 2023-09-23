@@ -7,7 +7,7 @@ library(viridis)
 library(MuMIn)
 library(ggplot2)
 
-#1 establish the data tibble
+#Q1 establish the data tibble
 anole <- read_csv("anole.dat.csv")
 anole.eco <- read_csv("anole.eco.csv")
 anole.log <- anole%>%
@@ -18,13 +18,13 @@ anole.log <- anole%>%
   print()
 
 
-#2 construct two linear models
+#Q2 construct two linear models
 lm.PH <- lm(SVL~PH+ArbPD,anole.log)
 lm.PH
 lm.PD <- lm(SVL~ArbPD+PH,anole.log)
 lm.PD
 
-#3 residual plots against linear models
+#Q3 residual plots against linear models
 #Calculate residuals
 anole.log <- anole.log %>%
   mutate(res_PD=residuals(lm.PD))
@@ -53,7 +53,7 @@ pgls.BM.PD <- gls(HTotal ~SVL + ArbPD, corBrownian(1,phy = anole.tree,form=~Spec
 #PGLS under BM + perch diameter + perch height + perch diameter
 pgls.BM.both <- gls(HTotal ~SVL + PH + ArbPD, corBrownian(1,phy = anole.tree,form=~Species),data = anole.log, method = "ML")
 
-#5 Assess the fit of each of these three models using AICc and AICw 
+#Q5 Assess the fit of each of these three models using AICc and AICw 
 #AICc from the MuMIn package
 anole.phylo.aic <- AICc(pgls.BM.PH,pgls.BM.PD,pgls.BM.both)
 aicw(anole.phylo.aic$AICc)
@@ -63,7 +63,7 @@ anova(pgls.BM.PD)
 anova(pgls.BM.both)
 #using Anova table, model using perch diameter and model using both covariates are a significant predictor of the hingimb length in a phylogenetic context.
 
-#6 Plot best fitting PGLS model (covariates vs. factors)
+#Q6 Plot best fitting PGLS model (covariates vs. factors)
 anole.log <- anole.log%>%
   mutate(both.res=residuals(pgls.BM.both))
 p.eco.phylo <- anole.log%>%
