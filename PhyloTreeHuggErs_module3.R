@@ -1,4 +1,4 @@
-### Jaan Project Report ###
+### FINAL Project Report ###
 
 #assessing if important ecological parameters of perch height and diameter of the perch
   #predict discrete patterns in the hindlimb-SVL relationship
